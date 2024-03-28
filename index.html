@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Self-Discovering Interpretable Diffusion Latent Directions for Responsible Text-to-Image Generation">
+  <meta name="keywords" content="Text-to-Image, Multimodal Generative Models, Transparency, Explainability, Safety, Responsible AI">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interpret Diffusion</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV4ZJ9PVSV"></script>  
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FV4ZJ9PVSV');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body onload="updateInteractive();">
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-fullhd">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Self-Discovering Interpretable Diffusion Latent Directions for Responsible Text-to-Image Generation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a target="_blank" href="https://hangligit.github.io/">Hang Li</a><sup>1,4,5</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://www.linkedin.com/in/chengzhi-shen/?originalSubdomain=de/">Chengzhi Shen</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://www.robots.ox.ac.uk/~phst/">Philip Torr</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://www.dbs.ifi.lmu.de/~tresp/">Volker Tresp</a><sup>1,4</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://jindonggu.github.io/">Jindong Gu</a><sup>2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>LMU Munich,</span>
+            <span class="author-block"><sup>2</sup>University of Oxford,</span>
+            <span class="author-block"><sup>3</sup>TUM,</span>
+            <span class="author-block"><sup>4</sup>MCML,</span>
+            <span class="author-block"><sup>5</sup>Siemens AG</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a target="_blank" href="https://arxiv.org/abs/2311.17216"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+            <!-- Arxiv Link. -->
+            <span class="link-block">
+              <a target="_blank" href="https://arxiv.org/abs/2311.17216"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fas fa-file"></i>
+                </span>
+                <span>ArXiv</span>
+              </a>
+            </span>
+
+            <!-- Video Link. -->
+            <span class="link-block">
+              <a target="_blank" href="https://arxiv.org/abs/2311.17216"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-youtube"></i>
+                </span>
+                <span>Video</span>
+              </a>
+            </span>
+
+            <!-- Code Link. -->
+            <span class="link-block">
+              <a target="_blank" href="https://arxiv.org/abs/2311.17216"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>Code (Coming Soon)</span>
+                </a>
+            </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero teaser">
+  <div class="container is-fullhd">
+    <div class="hero-body">
+      <div class="container">
+        <div class="rows">
+          <div style="text-align: center;">
+            <img src="images/Page1.jpg" class="interpolation-image" style="width: 60%; height: auto;"/>
+          </div>
+        </div>
+        <br>
+        <h2 class="subtitle has-text-centered">
+          <b>Self-discovery of Concept Vectors in the Semantic Latent Space of Diffusion Models</b>
+          <!-- <br>We explore two types of large-scale multimodal generative models, image-to-text and text-to-image. The image-to-text model generates abstract descriptions of an image, whereas the text-to-image model decodes the text into low-level visual pixel features. These two models are closely related but their relationship is little understood. In this work, we study if large multimodal generative models understand each other. Specifically, if Flamingo describes an image in text, can DALLE reconstruct an image similar to the input image from the text? -->
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Diffusion-based models have gained significant popularity for text-to-image generation due to their exceptional image-generation capabilities. A risk with these models is the potential generation of inappropriate content, such as biased or harmful images. However, the underlying reasons for generating such undesired content from the perspective of the diffusion model's internal representation remain unclear. Previous work interprets vectors in an interpretable latent space of diffusion models as semantic concepts. However, existing approaches cannot discover directions for arbitrary concepts, such as those related to inappropriate concepts. In this work, we propose a novel self-supervised approach to find interpretable latent directions for a given concept. With the discovered vectors, we further propose a simple approach to mitigate inappropriate generation. Extensive experiments have been conducted to verify the effectiveness of our mitigation approach, namely, for fair generation, safe generation, and responsible text-enhancing generation. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+
+</section>
+
+<!-- <section class="section">
+  <div class="container is-max-widescreen">
+
+    <div class="rows">
+      <h2 class="title is-3">Experiment</h2>
+
+      <h2 class="title is-5">Image-to-Text-to-Image</h2>
+      <p class="content has-text-justified">
+        The quality of a caption can be evaluated by assessing the image reconstruction produced by a text-to-image model. The best text for an image is one that leads to the most accurate reconstruction of the original image
+      </p>
+
+      <p class="content has-text-justified">
+      <b>Method</b>: The generated image is compared with the input image using a similarity function based on CLIP image embeddings.
+      Human-annotated captions serve as ground truth representations of the input image to evaluate the quality of the generated caption.      
+      </p>
+
+      <div style="text-align: center;">
+        <img src="images/Page4.png" class="interpolation-image" style="width: 60%; height: auto;"/>
+      </div>
+      <br>
+
+      <b>Evaluation</b>: The result with three similarity and four caption metrics on the NoCaps dataset suggests that regardless of the similarity or evaluation metric, better image reconstruction always leads to better captions.
+      </p>
+      <br>
+
+      <div style="text-align: center;">
+        <img src="images/Page5.png" class="interpolation-image" style="width: 60%; height: auto;"/>
+      </div>
+      <br>
+      
+      <p class="content has-text-justified">
+      <b>Qualitative examples</b> of reconstruction tasks. The figure shows image reconstruction for the given input image of a bird. Two samples are shown with their generated images, ranked by the image similarity.
+      </p>
+
+      <div style="text-align: center;">
+        <img src="images/Page3.png" class="interpolation-image" style="width: 50%; height: auto;"/>
+      </div>
+    </br>
+
+
+      <h2 class="title is-5">Text-to-Image-to-Text</h2>
+      <p class="content has-text-justified">
+        The quality of a generated image can be evaluated by assessing the text reconstruction produced by a caption model. The best image for an image is one that leads to the most accurate reconstruction of the original text.
+      </p>
+
+      <p class="content has-text-justified">
+        <b>Method</b>: The generated image is compared with the input image using a similarity function based on CLIP image embeddings.
+        Human-annotated captions serve as ground truth representations of the input image to evaluate the quality of the generated caption.      
+        </p>
+  
+        <div style="text-align: center;">
+          <img src="images/Page6.png" class="interpolation-image" style="width: 60%; height: auto;"/>
+        </div>
+        <br>
+  
+        <b>Evaluation</b>: The result with three similarity and four caption metrics on the NoCaps dataset suggests that regardless of the similarity or evaluation metric, better image reconstruction always leads to better captions.
+        </p>
+        <br>
+  
+        <div style="text-align: center;">
+          <img src="images/Page7.png" class="interpolation-image" style="width: 60%; height: auto;"/>
+        </div>
+        <br>
+        
+        <p class="content has-text-justified">
+        <b>Qualitative examples</b> of reconstruction tasks. The figure shows text reconstruction for the given input image of a text. Two samples are shown with their generated texts, ranked by the image similarity. 
+        </p>
+  
+        <div style="text-align: center;">
+          <img src="images/Page8.png" class="interpolation-image" style="width: 50%; height: auto;"/>
+        </div>
+  
+        <br>
+        <p class="content has-text-justified">
+          <b>More Visualizations:</b> 
+          </p>
+        <div style="text-align: center;">
+          <img src="images/Page11.jpg" class="interpolation-image" style="width: 100%; height: auto;"/>
+        </div>
+
+        <br>
+        <div style="text-align: center;">
+          <img src="images/Page12.jpg" class="interpolation-image" style="width: 100%; height: auto;"/>
+        </div>
+
+    </div>
+  </div>
+</section> -->
+
+<!-- 
+
+<section class="section">
+  <div class="container is-max-widescreen">
+
+    <div class="rows">
+      <h2 class="title is-3">Cycle Finetuning</h2>
+      <p class="content has-text-justified">
+      <b>A Finetuning Framework</b> We propose a unified framework to enhance both the image-to-text and text-to-image models: finetuning the image-to-text model using a reconstruction loss computed by a text-to-image model as regularization.
+      </p>
+      <div style="text-align: center;">
+        <img src="images/Page2.png" class="interpolation-image" style="width: 120%; height: auto;"/>
+      </div>
+
+      <br>
+      <p class="content has-text-justified">
+        <b>Improvement:</b> Image-to-Text Captioning task
+        </p>
+        <div style="text-align: center;">
+          <img src="images/Page9.png" class="interpolation-image" style="width: 120%; height: auto;"/>
+        </div>
+
+        <b>Improvement:</b> Text-to-Image Generation task
+      </p>
+      <br>
+      <div style="text-align: center;">
+        <img src="images/Page10.png" class="interpolation-image" style="width: 50%; height: auto;"/>
+      </div>
+    
+    </div>
+  </div>
+</section> -->
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-widescreen content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@InProceedings{li2024self,
+        author    = {Li, Hang and Shen, Chengzhi and Torr, Philip and Tresp, Volker and Gu, Jindong},
+        title     = {Self-discovering interpretable diffusion latent directions for responsible text-to-image generation},
+        booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+        month     = {June},
+        year      = {2024},
+        <!-- pages     = {1999-2010} -->
+    }</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <p>
+            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
